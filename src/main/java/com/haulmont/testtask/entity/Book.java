@@ -9,15 +9,14 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
 @Table(name = "BOOK")
 @NamedQuery(name = "BOOK.getAll", query = "SELECT b from Book b")
 public class Book {
 
     public enum Publisher {
-        Москва,
-        Питер,
+        Moscow,
+        Piter,
         OReilly
     }
     @Id
@@ -36,8 +35,7 @@ public class Book {
     private Genre genre;
 
     @Column(name = "PUBLICATION_DATE")
-    @Temporal(TemporalType.DATE)
-    private Date publicationDate;
+    private Long publicationDate;
 
     @Column(name = "PUBLICATION_CITY")
     private String publicationCity;
@@ -45,5 +43,10 @@ public class Book {
     @Column(name = "PUBLISHER")
     @Enumerated(EnumType.STRING)
     private Publisher publisher;
+
+    @Override
+    public String toString(){
+        return name+" by "+author.toString();
+    }
 
 }

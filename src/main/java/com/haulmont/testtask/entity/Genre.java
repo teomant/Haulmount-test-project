@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
 @Table(name = "GENRE")
 @NamedQuery(name = "GENRE.getAll", query = "SELECT g from Genre g")
@@ -19,4 +18,9 @@ public class Genre {
 
     @Column(name = "NAME")
     private String name;
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

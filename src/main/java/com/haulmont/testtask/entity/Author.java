@@ -9,10 +9,9 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
-@Table(name = "AUTHORS")
-@NamedQuery(name = "AUTHORS.getAll", query = "SELECT a from Author a")
+@Table(name = "AUTHOR")
+@NamedQuery(name = "AUTHOR.getAll", query = "SELECT a from Author a")
 public class Author {
 
     @Id
@@ -27,4 +26,9 @@ public class Author {
 
     @Column(name = "LASTNAME")
     private String lastname;
+
+    @Override
+    public String toString(){
+        return firstname+" "+lastname;
+    }
 }

@@ -88,8 +88,8 @@ public class BookDaoImpl implements BookDao {
         List<Book> bookList = null;
         try{
             em.getTransaction().begin();
-            bookList = em.createQuery("select b from Book b where b.author_id = :value")
-                    .setParameter("value", value.getId()).getResultList();
+            bookList = em.createQuery("select b from Book b where b.author = :value")
+                    .setParameter("value", value).getResultList();
             em.getTransaction().commit();
         } catch (Exception e){
             em.getTransaction().rollback();
@@ -98,7 +98,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> filterByPublisher(String value) {
+    public List<Book> filterByPublisher(Book.Publisher value) {
         List<Book> bookList = null;
         try{
             em.getTransaction().begin();

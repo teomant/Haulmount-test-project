@@ -62,7 +62,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public List<Author> getAllAuthors() {
-        TypedQuery<Author> query = em.createNamedQuery("AUTHORS.getAll", Author.class);
+        TypedQuery<Author> query = em.createNamedQuery("AUTHOR.getAll", Author.class);
         return query.getResultList();
     }
 }
