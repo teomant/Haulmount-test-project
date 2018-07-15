@@ -1,15 +1,11 @@
 package com.haulmont.testtask.dao.impl;
 
-import com.haulmont.testtask.dao.AuthorDao;
 import com.haulmont.testtask.dao.GenreDao;
-import com.haulmont.testtask.entity.Author;
 import com.haulmont.testtask.entity.Genre;
 
 import javax.persistence.*;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GenreDaoImpl implements GenreDao {
 
@@ -71,23 +67,18 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
-    public Map<Genre, Integer> getGenresAndBooks() {
+    public Integer getGenreCount(Genre genre) {
 
-        Map<Genre, Integer> resultMap = new HashMap<>();
-        List<Genre> genreList = getAllGenres();
-        for (Genre genre : genreList){
-            Integer num=0;
-            try{
-                em.getTransaction().begin();
-                num = em.createQuery("select b from Book b where b.genre_id = :value")
-                        .setParameter("value", genre.getId()).getResultList().size();
-                em.getTransaction().commit();
-            } catch (Exception e){
-                em.getTransaction().rollback();
-            }
-            resultMap.put(genre,num);
+        Integer num=0;
+        try{
+            em.getTransaction().begin();
+            num = em.createQuery("select b from Book b where b.genre = :value")
+                    .setParameter("value", genre).getResultList().size();
+            em.getTransaction().commit();
+        } catch (Exception e){
+            em.getTransaction().rollback();
         }
 
-        return resultMap;
+        return num;
     }
 }

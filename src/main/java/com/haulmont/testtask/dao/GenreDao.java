@@ -12,5 +12,5 @@ public interface GenreDao {
     void updateGenre(Genre genre);
     void deleteGenre(Genre genre) throws SQLException;
     List<Genre> getAllGenres();
-    Map<Genre, Integer> getGenresAndBooks();
+    Integer getGenreCount(Genre genre);
 }
