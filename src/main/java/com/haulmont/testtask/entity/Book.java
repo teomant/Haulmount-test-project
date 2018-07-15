@@ -35,7 +35,8 @@ public class Book {
     private Genre genre;
 
     @Column(name = "PUBLICATION_DATE")
-    private Long publicationDate;
+    @Temporal(TemporalType.DATE)
+    private Date publicationDate;
 
     @Column(name = "PUBLICATION_CITY")
     private String publicationCity;
